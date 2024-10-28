@@ -1,177 +1,263 @@
-import { FaMapMarkerAlt, FaCalendarAlt, FaLock, FaNetworkWired, FaBell, FaChartLine } from 'react-icons/fa';
+import React from 'react';
+import { FaMapMarkerAlt, FaCalendarAlt, FaLock, FaNetworkWired, FaBell, FaChartLine, FaArrowRight } from 'react-icons/fa';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import BackgroundImage from '../assets/background.svg'; 
+import BackgroundImage from '../assets/background.svg';
 import Image from '../assets/3d-casual-life-trail-map.png';
 import Microsoft from '../assets/microsoft.svg';
 import AWSLogo from '../assets/awws.svg';
 import Header from '../components/header.jsx';
 import Footer from '../components/footer.jsx';
-//import socialproof from '../assets/socialproof.svg'
-import avatar from '../assets/avgroup.svg'
-import reviews from '../assets/reviews.svg'
-import bot from '../assets/bot.svg'
+import avatar from '../assets/avgroup.svg';
+import reviews from '../assets/reviews.svg';
+import bot from '../assets/bot.svg';
 
 const LandingPage = () => {
   return (
-    <div className="relative flex flex-col min-h-screen bg-lightBg dark:bg-darkBg text-lightText dark:text-darkText font-sans">
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-slate-100 font-sans">
       <Helmet>
         <title>Locsafe - Supply Chain Transparency</title>
         <meta
           name="description"
-          content="Locsafe™ is a blockchain-based supply chain tracking system that ensures transparency, traceability, and security for your assets in real-time. Monitor your supply chain from production to delivery with ease."
+          content="Locsafe™ is a blockchain-based supply chain tracking system that ensures transparency, traceability, and security for your assets in real-time."
         />
       </Helmet>
 
-      <img
-        className="absolute inset-0 bg-center dark:opacity-5 z-0"
-        src={BackgroundImage}
-      />
-
-      {/* Main content */}
-      <div className="relative z-10">
-        <Header />
-        <main className="container mx-auto flex-1 my-16 flex flex-col md:flex-row px-4 pt-10 relative mb-20">
-          <div className="md:w-1/2 z-10 flex flex-col justify-center mt-10 md:mt-0 m-2">
-            <h2 className="text-4xl font-bold mb-4 lg:mt-10 ">
-              Bring <span className="text-accent">transparency</span> to your supply chain
-            </h2>
-            <p className="text-xl mb-4">
-              Locsafe leverages blockchain technology to ensure you can trace your products and assets in real-time, from the origin to the final destination, reducing fraud and increasing accountability.
-            </p>
-            <div className="flex items-center space-x-4 font-medium mb-4">
-              <FaNetworkWired className="text-2xl text-accent" />
-              <p>Blockchain-powered tracking for end-to-end transparency</p>
-            </div>
-            <div className="flex items-center space-x-4 font-medium mb-4">
-              <FaLock className="text-2xl text-accent" />
-              <p>Enhanced security and data immutability</p>
-            </div>
-            <div className="flex items-center space-x-4 font-medium mb-4">
-              <FaBell className="text-2xl text-accent" />
-              <p>Real-time alerts for any discrepancies or updates</p>
-            </div>
-            <div className="flex items-center space-x-4 font-medium mt-4">
-              <Link
-                to="/features"
-                className="inline-block px-6 py-3 bg-accent text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 transition duration-300"
-              >
-                Learn More
-              </Link>
-              <div className='m-1'>
-              <img src={bot} alt='Discover AI integration' />
-            </div>
-            </div>
-            <div className='flex mt-6 justify-between w-[320px]  m-1'>
-              <img src={avatar} alt='user reviews' />
-              <img src={reviews} alt="ratings" />
-            </div>
-          </div>
-          <div className="md:w-1/2 z-10 flex items-center justify-center mt-10 md:mt-0">
-            <img className="h-full w-full object-contain rounded-lg md:max-w-md" src={Image} alt="Blockchain supply chain tracking" />
-          </div>
-        </main>
-
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h3 className="text-3xl font-bold text-center mb-8">Our Partners</h3>
-            <div className="flex flex-wrap justify-around items-center space-x-4 space-y-4 md:space-y-0 md:space-x-8">
-              <img src={Microsoft} alt="Microsoft" className="h-12" />
-              <img src={AWSLogo} alt="Amazon Web Services" className="h-12" />
-            </div>
-          </div>
-        </section>
-
-        <section id="features" className="py-16">
-          <div className="container mx-auto px-4">
-            <h3 className="text-3xl font-bold text-center mb-12">Key Features</h3>
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <FeatureCard
-                icon={<FaMapMarkerAlt className="text-4xl text-accent mb-4" />}
-                title="Global Traceability"
-                description="Track your products and assets at every stage, from production to delivery."
-              />
-              <FeatureCard
-                icon={<FaLock className="text-4xl text-accent mb-4" />}
-                title="Data Security"
-                description="Immutable records that enhance security and reduce risks of fraud."
-              />
-              <FeatureCard
-                icon={<FaBell className="text-4xl text-accent mb-4" />}
-                title="Real-time Alerts"
-                description="Receive instant alerts for any discrepancies or status updates in your supply chain."
-              />
-              <FeatureCard
-                icon={<FaNetworkWired className="text-4xl text-accent mb-4" />}
-                title="Decentralized Transparency"
-                description="Maintain transparency across global supply chains without the need for a central authority."
-              />
-              <FeatureCard
-                icon={<FaChartLine className="text-4xl text-accent mb-4" />}
-                title="Comprehensive Analytics"
-                description="Gain insights into your supply chain operations with detailed analytics."
-              />
-              <FeatureCard
-                icon={<FaCalendarAlt className="text-4xl text-accent mb-4" />}
-                title="Customized Notifications"
-                description="Set up personalized notifications based on your specific supply chain needs."
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h3 className="text-3xl font-bold mb-8">Why Choose Locsafe</h3>
-            <p className="text-xl mb-8">Locsafe offers unparalleled transparency and security in managing supply chains. Here's why businesses trust us:</p>
-            <div className="grid md:grid-cols-2 gap-8 text-left">
-              <div className="bg-gray-300 dark:bg-gray-700 p-6 rounded-lg shadow-md">
-                <h4 className="text-xl font-semibold mb-4">Security</h4>
-                <p>Our blockchain-based platform ensures that data remains secure and tamper-proof.</p>
-              </div>
-              <div className="bg-gray-300 dark:bg-gray-700 p-6 rounded-lg shadow-md">
-                <h4 className="text-xl font-semibold mb-4">Efficiency</h4>
-                <p>Streamline your supply chain operations with real-time tracking and automation.</p>
-              </div>
-              <div className="bg-gray-300 dark:bg-gray-700 p-6 rounded-lg shadow-md">
-                <h4 className="text-xl font-semibold mb-4">Transparency</h4>
-                <p>Increase accountability and trust by making the supply chain fully transparent.</p>
-              </div>
-              <div className="bg-gray-300 dark:bg-gray-700 p-6 rounded-lg shadow-md">
-                <h4 className="text-xl font-semibold mb-4">Flexibility</h4>
-                <p>Customize our platform to suit the unique requirements of your supply chain.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h3 className="text-3xl font-bold mb-8">Get Started with Locsafe</h3>
-            <p className="text-xl mb-8">Experience the future of supply chain management with blockchain-powered solutions. Join today!</p>
-            <Link
-              to="/register"
-              className="inline-block px-8 py-4 bg-accent text-white font-semibold rounded-lg shadow-md hover:bg-teal-600 transition duration-300"
-            >
-              Sign Up Now
-            </Link>
-          </div>
-        </section>
+      <div className="absolute inset-0 z-0">
+        <img
+          className="w-full h-full object-cover opacity-10 dark:opacity-5"
+          src={BackgroundImage}
+          alt=""
+        />
       </div>
 
-      <Footer />
+      <div className="relative z-10">
+        <Header />
+        
+        {/* Hero Section */}
+        <section className="container mx-auto px-4 pt-20 pb-32">
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-teal-50 dark:bg-teal-900/30 rounded-full">
+                <span className="text-teal-600 dark:text-teal-400 text-sm font-medium">NEW: AI-Powered Supply Chain Intelligence</span>
+                <img src={bot} alt="AI Bot" className="ml-2 w-6 h-6" />
+              </div>
+              
+              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+                Bring <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-blue-500">transparency</span> to your supply chain
+              </h1>
+              
+              <p className="text-xl text-slate-600 dark:text-slate-300">
+                Leverage blockchain and AI technology to trace your products in real-time, from origin to destination, reducing fraud and increasing accountability.
+              </p>
+              
+              <div className="space-y-6">
+                <div className="grid gap-4">
+                  <Feature icon={<FaNetworkWired />} text="Blockchain-powered tracking for end-to-end transparency" />
+                  <Feature icon={<FaLock />} text="Enhanced security and data immutability" />
+                  <Feature icon={<FaBell />} text="Real-time AI alerts for any discrepancies" />
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <Link
+                    to="/demo"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-lg shadow-lg shadow-teal-500/25 hover:shadow-xl hover:scale-105 transition duration-300"
+                  >
+                    Get Started
+                    <FaArrowRight className="ml-2" />
+                  </Link>
+                  <Link
+                    to="/features"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition duration-300"
+                  >
+                    Learn More
+                  </Link>
+                </div>
+
+                <div className="flex items-center justify-between max-w-md pt-6 border-t border-slate-200 dark:border-slate-700">
+                  <img src={avatar} alt="User reviews" className="h-12" />
+                  <img src={reviews} alt="Ratings" className="h-8" />
+                </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-500/30 to-blue-500/30 rounded-3xl blur-3xl" />
+              <img 
+                className="relative  w-full transform hover:scale-105 transition duration-500"
+                src={Image}
+                alt="Supply chain dashboard"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Partners Section */}
+        <section className="py-16 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm">
+          <div className="container mx-auto px-4">
+            <p className="text-center text-sm font-medium text-slate-600 dark:text-slate-400 mb-8">
+              TRUSTED BY INDUSTRY LEADERS
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-12 opacity-75">
+              <img src={Microsoft} alt="Microsoft" className="h-8 dark:brightness-200" />
+              <img src={AWSLogo} alt="Amazon Web Services" className="h-8 dark:brightness-200" />
+            </div>
+          </div>
+        </section>
+
+        {/* Features Grid */}
+        <section className="py-24">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <span className="text-teal-600 dark:text-teal-400 text-sm font-medium tracking-wider uppercase">Features</span>
+              <h2 className="text-3xl font-bold mt-4">Everything you need to track your supply chain</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 mt-4">
+                Comprehensive tools powered by blockchain and AI technology.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <FeatureCard key={index} {...feature} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Section */}
+        <section className="py-24 bg-slate-50 dark:bg-slate-800/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <span className="text-teal-600 dark:text-teal-400 text-sm font-medium tracking-wider uppercase">Why Choose Us</span>
+              <h2 className="text-3xl font-bold mt-4">Why businesses trust Locsafe</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 mt-4">
+                Join thousands of companies using Locsafe to revolutionize their supply chains.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {benefits.map((benefit, index) => (
+                <BenefitCard key={index} {...benefit} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-teal-500/10 to-blue-500/10" />
+          <div className="container mx-auto px-4 relative">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-4xl font-bold mb-6">Ready to transform your supply chain?</h2>
+              <p className="text-xl text-slate-600 dark:text-slate-300 mb-8">
+                Experience the future of supply chain management with AI and blockchain technology.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  to="/register"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-lg shadow-lg shadow-teal-500/25 hover:shadow-xl hover:scale-105 transition duration-300"
+                >
+                  Start Free Trial
+                  <FaArrowRight className="ml-2" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition duration-300"
+                >
+                  Contact Sales
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+        <Footer />
+
+      </div>
+
     </div>
   );
 };
 
-const FeatureCard = ({ icon, title, description }) => {
+const Feature = ({ icon: Icon, text }) => (
+  <div className="flex items-center gap-4 text-slate-800 dark:text-slate-200">
+    <div className="flex-shrink-0 w-10 h-10 bg-teal-50 dark:bg-teal-900/30 rounded-lg flex items-center justify-center">
+      {React.cloneElement(Icon, { className: "w-5 h-5 text-teal-600 dark:text-teal-400" })}
+    </div>
+    <p className="font-medium">{text}</p>
+  </div>
+);
+
+const FeatureCard = ({ icon: Icon, title, description }) => {
   return (
-    <div className="feature bg-gray-300 dark:bg-gray-700 p-6 rounded-lg shadow-md flex flex-col justify-center items-center">
-      {icon}
-      <h4 className="text-xl font-semibold mb-2">{title}</h4>
-      <p className="text-lightText dark:text-darkText">{description}</p>
+    <div className="group p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+      <div className="w-12 h-12 bg-teal-50 dark:bg-teal-900/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+        <Icon className="text-2xl text-teal-600 dark:text-teal-400" />
+      </div>
+      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      <p className="text-slate-600 dark:text-slate-300">{description}</p>
     </div>
   );
 };
+
+const BenefitCard = ({ title, description }) => {
+  return (
+    <div className="p-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+      <p className="text-slate-600 dark:text-slate-300">{description}</p>
+    </div>
+  );
+};
+
+const features = [
+  {
+    icon: FaMapMarkerAlt,
+    title: "Global Traceability",
+    description: "Track your products and assets at every stage, from production to delivery."
+  },
+  {
+    icon: FaLock,
+    title: "Enhanced Security",
+    description: "Immutable blockchain records that reduce fraud risks and increase accountability."
+  },
+  {
+    icon: FaBell,
+    title: "Smart Alerts",
+    description: "Get instant AI-powered notifications for any supply chain discrepancies or updates."
+  },
+  {
+    icon: FaNetworkWired,
+    title: "Decentralized Network",
+    description: "Maintain transparency across global supply chains without central authority."
+  },
+  {
+    icon: FaChartLine,
+    title: "Advanced Analytics",
+    description: "Gain actionable insights with AI-powered supply chain analytics."
+  },
+  {
+    icon: FaCalendarAlt,
+    title: "Custom Workflows",
+    description: "Set up personalized notification rules based on your specific needs."
+  }
+];
+
+const benefits = [
+  {
+    title: "Enterprise-grade Security",
+    description: "Bank-level encryption and blockchain technology ensure your data remains secure and tamper-proof."
+  },
+  {
+    title: "AI-Powered Efficiency",
+    description: "Automate manual processes and reduce errors with intelligent tracking and smart contracts."
+  },
+  {
+    title: "Complete Transparency",
+    description: "Build trust with stakeholders through immutable records and end-to-end visibility."
+  },
+  {
+    title: "Scalable Solution",
+    description: "Our platform grows with your business, handling supply chains of any size and complexity."
+  }
+];
 
 export default LandingPage;

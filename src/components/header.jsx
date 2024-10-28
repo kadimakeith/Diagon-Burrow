@@ -1,117 +1,212 @@
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { FaSun, FaMoon } from 'react-icons/fa';
-import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
+import { 
+  FaSun, 
+  FaMoon, 
+  FaBars, 
+  FaTimes, 
+  FaRocket, 
+  FaShieldAlt, 
+  FaLock 
+} from 'react-icons/fa';
+import logoabs from '../assets/logoabs.png';
+
+const products = [
+  {
+    title: "Time-locked wallet",
+    description: "Secure your funds with  our time-locked wallet",
+    icon: <FaLock className="text-teal-500" />,
+    href: "https://tlw-phi.vercel.app/timelock"
+  }
+];
 
 const Header = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 770);
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
+  const [isDarkMode, setIsDarkMode] = useState(() => 
+    localStorage.getItem('theme') === 'dark'
+  );
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 770);
-    
-    window.addEventListener('resize', handleResize);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
     document.documentElement.classList.toggle('dark', isDarkMode);
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    window.addEventListener('scroll', handleScroll);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [isDarkMode]);
 
-  const toggleMobileNav = () => setIsNavOpen(!isNavOpen);
   const toggleDarkMode = () => setIsDarkMode(prev => !prev);
-
-  const navLinks = [
-    /*{ to: '/blog', label: 'Blog' },*/
-    { to: '/contact', label: 'Contact' },
-    { to: 'https://chat.whatsapp.com/FHo517DQ4RSEZHjBq48LYO', label: 'Join our community', external: true },
-    { to: '/register', label: 'Get Started', button: true }
-  ];
+  const toggleMobileMenu = () => setIsMobileMenuOpen(prev => !prev);
 
   return (
-    <header className="fixed w-full z-50 bg-gray-900 dark:bg-gray-800 shadow-lg">
-      <div className="container mx-auto flex items-center justify-between px-4 py-4">
-        <Link to="/" className="text-2xl font-bold text-white flex items-center">
-          <img src={logo} alt="Locsafe Logo" className="h-10 md:h-12 lg:h-16 w-auto" />
-        </Link>
+    <header 
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-gray-900 shadow-lg' 
+          : 'bg-gray-900'
+      }`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <img src={logoabs} alt="Locsafe Logo" className="h-8 w-auto" />
+            <span className="font-bold text-xl text-white">Locsafe</span>
+          </Link>
 
-        {isMobile ? (
-          <button onClick={toggleMobileNav} className="block lg:hidden focus:outline-none transition-transform duration-300">
-            <div className={`hamburger ${isNavOpen ? 'open' : ''}`}>
-              <span className={`block h-0.5 w-6 bg-white mb-1 transition-transform duration-100 ${isNavOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-              <span className={`block h-0.5 w-6 bg-white mb-1 transition-opacity duration-100`}></span>
-              <span className={`block h-0.5 w-6 bg-white transition-transform duration-100 ${isNavOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-            </div>
-          </button>
-        ) : (
-          <nav className="flex items-center space-x-8 text-white font-medium">
-            <ul className="flex items-center space-x-8 list-none"> {/* Added list-none to remove dots */}
-              {navLinks.map(({ to, label, external, button }) => (
-                <li key={label}>
-                  {button ? (
-                    <Link to={to}>
-                      <button className="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300">
-                        {label}
-                      </button>
-                    </Link>
-                  ) : (
-                    <Link to={to} className={`hover:text-gray-400 transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`} target={external ? '_blank' : '_self'}>
-                      {label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-              <li>
-                <button
-                  onClick={toggleDarkMode}
-                  className="text-l p-2 rounded transition-colors duration-300 flex items-center"
-                  aria-label="Toggle Dark Mode"
-                >
-                  {isDarkMode ? <FaSun className="text-yellow-500 transition-transform duration-300" /> : <FaMoon className="text-gray-300 transition-transform duration-300" />}
-                </button>
-              </li>
-            </ul>
-          </nav>
-        )}
-      </div>
-
-      {isMobile && isNavOpen && (
-        <nav className={`fixed inset-x-0 top-16 bg-gray-900 dark:bg-gray-800 h-auto flex flex-col items-center transition-opacity duration-500`}>
-                      
-              <button
-                onClick={toggleDarkMode}
-                className="text-2xl p-2 rounded transition-colors duration-300 mt-4 flex items-center"
-                aria-label="Toggle Dark Mode"
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {/* Products Dropdown */}
+            <div className="relative group">
+              <button 
+                onMouseEnter={() => setIsProductsOpen(true)}
+                className="flex items-center space-x-1 text-white dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400"
               >
-                {isDarkMode ? <FaSun className="text-yellow-500 transition-transform duration-300" /> : <FaMoon className="text-gray-300 transition-transform duration-300" />}
+                <span>Products</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
-            
-          <ul className="text-white font-medium list-none">
-            {navLinks.map(({ to, label, external, button }) => (
-              <li key={label}>
-                {button ? (
-                  <Link to={to}>
-                    <button className="block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-12 rounded transition-colors duration-300 mb-5">
-                      {label}
-                    </button>
-                  </Link>
-                ) : (
-                  <Link to={to} className={`block py-2 px-4 hover:text-teal-400 transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`} target={external ? '_blank' : '_self'}>
-                    {label}
-                  </Link>
-                )}
-              </li>
-            ))}
 
-          </ul>
-        </nav>
-      )}
+              {/* Products Dropdown Menu */}
+              <div 
+                onMouseLeave={() => setIsProductsOpen(false)}
+                className={`absolute left-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-200 ${
+                  isProductsOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+                }`}
+              >
+                <div className="p-4 grid gap-4">
+                  {products.map((product) => (
+                    <Link
+                      key={product.title}
+                      to={product.href}
+                      className="flex items-start p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                    >
+                      <div className="flex-shrink-0">{product.icon}</div>
+                      <div className="ml-4">
+                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                          {product.title}
+                        </p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {product.description}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <Link to="/contact" className="text-white dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400">
+              Contact
+            </Link>
+            
+            <a 
+              href="https://chat.whatsapp.com/FHo517DQ4RSEZHjBq48LYO" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400"
+            >
+              Join Community
+            </a>
+
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              {isDarkMode ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
+            </button>
+
+            <Link to="/register">
+              <button className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg transition-colors">
+                Get Started
+              </button>
+            </Link>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            {isMobileMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="space-y-2">
+              <p className="px-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
+                Products
+              </p>
+              {products.map((product) => (
+                <Link
+                  key={product.title}
+                  to={product.href}
+                  className="flex items-center px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                  <span className="mr-3">{product.icon}</span>
+                  <div>
+                    <p className="font-medium">{product.title}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{product.description}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <Link
+              to="/contact"
+              className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Contact
+            </Link>
+
+            <a
+              href="https://chat.whatsapp.com/FHo517DQ4RSEZHjBq48LYO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              Join Community
+            </a>
+
+            <button
+              onClick={toggleDarkMode}
+              className="w-full flex items-center px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              {isDarkMode ? (
+                <>
+                  <FaSun className="mr-3" />
+                  <span>Light Mode</span>
+                </>
+              ) : (
+                <>
+                  <FaMoon className="mr-3" />
+                  <span>Dark Mode</span>
+                </>
+              )}
+            </button>
+
+            <Link
+              to="/register"
+              className="block px-3 py-2 text-center rounded-lg bg-teal-500 text-white hover:bg-teal-600"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </div>
     </header>
   );
 };
 
 export default Header;
-
 
 
 
