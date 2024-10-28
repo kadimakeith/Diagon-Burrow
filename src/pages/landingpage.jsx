@@ -10,7 +10,9 @@ import Header from '../components/header.jsx';
 import Footer from '../components/footer.jsx';
 import avatar from '../assets/avgroup.svg';
 import reviews from '../assets/reviews.svg';
-import bot from '../assets/bot.svg';
+import FeedbackModal from '../components/feedbackmodal.jsx';
+import { ToastContainer } from 'react-toastify';
+
 
 const LandingPage = () => {
   return (
@@ -22,6 +24,8 @@ const LandingPage = () => {
           content="Locsafe™ is a blockchain-based supply chain tracking system that ensures transparency, traceability, and security for your assets in real-time."
         />
       </Helmet>
+
+      <ToastContainer position="top-left" autoClose={3000} hideProgressBar closeOnClick pauseOnHover draggable />
 
       <div className="absolute inset-0 z-0">
         <img
@@ -40,7 +44,6 @@ const LandingPage = () => {
             <div className="space-y-8">
               <div className="inline-flex items-center px-4 py-2 bg-teal-50 dark:bg-teal-900/30 rounded-full">
                 <span className="text-teal-600 dark:text-teal-400 text-sm font-medium">NEW: AI-Powered Supply Chain Intelligence</span>
-                <img src={bot} alt="AI Bot" className="ml-2 w-6 h-6" />
               </div>
               
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
@@ -60,14 +63,14 @@ const LandingPage = () => {
 
                 <div className="flex items-center gap-4">
                   <Link
-                    to="/demo"
+                    to="/register"
                     className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-lg shadow-lg shadow-teal-500/25 hover:shadow-xl hover:scale-105 transition duration-300"
                   >
                     Get Started
                     <FaArrowRight className="ml-2" />
                   </Link>
                   <Link
-                    to="/features"
+                    to="#"
                     className="inline-flex items-center justify-center px-6 py-3 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition duration-300"
                   >
                     Learn More
@@ -171,6 +174,7 @@ const LandingPage = () => {
           </div>
         </section>
         <Footer />
+        <FeedbackModal />
 
       </div>
 

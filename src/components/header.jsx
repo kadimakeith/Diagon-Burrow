@@ -132,7 +132,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            className="md:hidden p-2 rounded-lg text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             {isMobileMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
           </button>
@@ -142,7 +142,7 @@ const Header = () => {
         <div className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1">
             <div className="space-y-2">
-              <p className="px-3 text-sm font-semibold text-gray-500 dark:text-gray-400">
+              <p className="px-3 text-sm font-semibold text-white ">
                 Products
               </p>
               {products.map((product) => (
@@ -162,7 +162,7 @@ const Header = () => {
 
             <Link
               to="/contact"
-              className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="block px-3 py-2 rounded-lg text-white hover:bg-gray-100 hover:text-black dark:hover:bg-gray-700"
             >
               Contact
             </Link>
@@ -171,14 +171,14 @@ const Header = () => {
               href="https://chat.whatsapp.com/FHo517DQ4RSEZHjBq48LYO"
               target="_blank"
               rel="noopener noreferrer"
-              className="block px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="block px-3 py-2 rounded-lg text-white hover:bg-gray-100 hover:text-black dark:hover:bg-gray-700"
             >
               Join Community
             </a>
 
             <button
               onClick={toggleDarkMode}
-              className="w-full flex items-center px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="w-full flex items-center px-3 py-2 rounded-lg text-white hover:text-black hover:bg-gray-100 dark:hover:bg-gray-700"
             >
               {isDarkMode ? (
                 <>

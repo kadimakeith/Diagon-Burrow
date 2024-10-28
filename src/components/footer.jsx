@@ -19,7 +19,7 @@ const Footer = () => {
       { label: 'Terms & Conditions', link: '/Terms-and-Conditions' },
       { label: 'Privacy Policy', link: '/Privacy-Policy' },
       { label: 'Cookie Policy', link: '/cookie-policy' },
-      { label: 'Support', link: '/Support' }
+      /*{ label: 'Support', link: '/Support' }*/
     ],
     contact: {
       address: 'P.0 Box 1102 - 3202, Nairobi, Kenya',
