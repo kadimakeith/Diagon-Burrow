@@ -128,7 +128,7 @@ const FeedbackModal = () => {
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   placeholder="Tell us what we can improve..."
-                  className="w-full p-3 border border-gray-200 rounded-lg mb-4 h-24 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-3 border text-black border-gray-200 rounded-lg mb-4 h-24 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                 />
                 <input type="hidden" name="rating" value={rating} />
