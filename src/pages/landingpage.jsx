@@ -10,7 +10,7 @@ import Header from '../components/header.jsx';
 import Footer from '../components/footer.jsx';
 import avatar from '../assets/avgroup.svg';
 import reviews from '../assets/reviews.svg';
-import FeedbackModal from '../components/feedbackmodal.jsx';
+//import FeedbackModal from '../components/feedbackmodal.jsx';
 import { ToastContainer } from 'react-toastify';
 
 
@@ -174,7 +174,7 @@ const LandingPage = () => {
           </div>
         </section>
         <Footer />
-        <FeedbackModal />
+        {/*<FeedbackModal />*/}
 
       </div>
 
