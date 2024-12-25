@@ -107,7 +107,7 @@ const Header = () => {
             </Link>
             
             <a 
-              href="https://chat.whatsapp.com/FHo517DQ4RSEZHjBq48LYO" 
+              href="https://discord.gg/wCKQCxaj" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400"
@@ -168,7 +168,7 @@ const Header = () => {
             </Link>
 
             <a
-              href="https://chat.whatsapp.com/FHo517DQ4RSEZHjBq48LYO"
+              href="https://discord.gg/wCKQCxaj"
               target="_blank"
               rel="noopener noreferrer"
               className="block px-3 py-2 rounded-lg text-white hover:bg-gray-100 hover:text-black dark:hover:bg-gray-700"
